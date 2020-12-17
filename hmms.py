@@ -124,7 +124,7 @@ def emission_probabilities(phone2features, parameters):
 
 
 if __name__ == '__main__':
-    path_to_features = '/Users/danielmora/PycharmProjects/digit_recognizer/features/egemapsv01b/'
+    path_to_features = '/Users/danielmora/git_digit_recogniser/digit-recogniser/features/egemapsv01b/'
     acoustic_dict = read_dictionary('dictionary.txt')
     print('acoustic_dict', acoustic_dict)
     digit2features = get_features_training(path_to_features, acoustic_dict)
@@ -136,12 +136,7 @@ if __name__ == '__main__':
     transition_matrix = transition_probabilities(acoustic_dict, phone2features)
     #print('transition probabilities\n', transition_matrix)
 
-
-
-
     #reestimated_parameters = reestimate(phone2features, initial_parameters)
     #def reestimate(phone2features, parameters):
     #    print(phone2features['s'].shape)
         #all_features =
-
-

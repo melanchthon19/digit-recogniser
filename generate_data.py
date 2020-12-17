@@ -49,5 +49,5 @@ spoken_digits = generate_digits(10)
 data = generate_labels(spoken_digits, labels)
 data = split_data(data, training_percentage=0.7)
 
-# to store data in csv file
+# to store data in csv file uncomment next line
 #data.to_csv('spoken_digits.csv')

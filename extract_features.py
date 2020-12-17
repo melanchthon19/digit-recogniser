@@ -9,6 +9,7 @@ path_to_wav = '/Users/danielmora/PycharmProjects/digit_recognizer/wav'
 
 for set in ['training', 'test']:
     for wav in os.listdir(os.path.join(path_to_wav, set)):
+        # to extract different features, change .conf file
         command = f'/Users/danielmora/opensmile/SMILExtract \
         -C /Users/danielmora/opensmile/config/egemaps/v01b/eGeMAPSv01b.conf \
         -I {os.path.join(path_to_wav, set, wav)} \
