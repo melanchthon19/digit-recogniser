@@ -63,7 +63,10 @@ def uniform_start(digit2features, acoustic_dict):
     for phone in phone2features.keys():
         initial_parameters['mean'][phone] = phone2features[phone].mean(axis=0)
         initial_parameters['sd'][phone] = phone2features[phone].std(axis=0)
-    #print(initial_parameters['mean']['s'].shape)
+    #for parameter in initial_parameters:
+    #    for state in phone2features:
+    #        print(parameter, state, initial_parameters[parameter][state].shape)
+
     return phone2features, initial_parameters
 
 
@@ -118,8 +121,8 @@ def emission_probabilities(phone2features, parameters):
     # pass all features, initial parameters
     # according to initial parameters, compute pdf for each state for each observation
     gaussian_model = gm.GaussianModel(phone2features, parameters)
-    gaussian_model.get_emission_probabilities()
-
+    emission_prob = gaussian_model.get_emission_probabilities()
+    
     return
 
 
