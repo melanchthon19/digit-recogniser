@@ -97,15 +97,14 @@ class HMM:
         # thus the iteration converged
         for parameter in old_parameters.keys():
             for state in old_parameters[parameter]:
-                if old_parameters[parameter][state].any() != new_parameters[parameter][state].any():
-                    return False
+                for index in range(len(old_parameters[parameter][state])):
+                    if old_parameters[parameter][state][index] != new_parameters[parameter][state][index]:
+                        return False
         return True
 
 
     def reestimate_parameters(self):
         converged = False
-        reestimated_parameters = {'mean':{phone: 0 for phone in self.phone2features.keys()},
-                                  'sd':{phone: 1 for phone in self.phone2features.keys()}}
         # reestimating parameters following soft alignment (weighted by its probability)
         # multiply each feature vector by the probability of the given state emitting that feature vector.
         # traverse states. per each state, traverse feature vectors.
@@ -114,6 +113,9 @@ class HMM:
         i = 0
         while not converged:
             print(f'reestimating parameters: iteration {i}')
+            reestimated_parameters = {'mean':{phone: 0 for phone in self.phone2features.keys()},
+                                      'sd':{phone: 1 for phone in self.phone2features.keys()}}
+
             for state in self.states:
                 new_parameter = []
                 for index in self.index2features:
@@ -130,10 +132,12 @@ class HMM:
             reestimated_emission_matrix = self.emission_probabilities(reestimated_parameters)
 
             converged = self.equal_parameters(self.parameters, reestimated_parameters)
+
             if not converged:
+                i += 1
                 self.parameters = reestimated_parameters
                 self.emission_matrix = reestimated_emission_matrix
-            
+
         return reestimated_parameters, reestimated_emission_matrix
 
 
