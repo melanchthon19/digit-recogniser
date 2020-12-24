@@ -19,3 +19,6 @@ frameSize = 0.25
 frameStep = 0.10
 frameCenterSpecial = lef
 ```
+\
+TODO:
+- fix reestimated emission matrix in hmms.py
