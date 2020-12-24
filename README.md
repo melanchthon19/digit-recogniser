@@ -9,7 +9,7 @@ It randomly generates a list of numbers from 0 to 9 and outputs a csv file with 
 
 #### extract_features.py
 Once digits are recorded and stored in the folder ```wav```, then features are extracted using openSMILE toolkit.
-Using openSMILE different sets of features can be extracted by specifying the .conf when callin openSMILE.\
+Using openSMILE different sets of features can be extracted by specifying the .conf when calling openSMILE.\
 It outputs a csv file containing features per digit sample that are stored in the folder ```features```.\
 When using openSMILE, remember to change frameModeFunctionals.conf.inc. By degault, the frameMode is 'full' meaning that it will take the average across the entire audio. However, we don't want just one value, but features extracted according a specific window size and every specific step. In this case, I used a window size of 25 mm and 10 mm step.
 
